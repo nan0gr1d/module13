@@ -36,7 +36,6 @@ async def set_growth(message, state):
 async def set_weight(message, state):
     await state.update_data(growth=message.text)
     data = await state.get_data()
-    print(data)
     await message.answer('Введите свой вес:')
     await UserState.weight.set()
 
