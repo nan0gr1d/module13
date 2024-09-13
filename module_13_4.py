@@ -43,11 +43,6 @@ async def set_weight(message, state):
 async def send_calories(message, state):
     await state.update_data(weight=message.text)
     data = await state.get_data()
-    """
-    Упрощенный вариант формулы Миффлина-Сан Жеора:
-    для мужчин: 10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5;
-    для женщин: 10 x вес (кг) + 6,25 x рост (см) – 5 x возраст (г) – 161.
-    """
     calories = 10 * float(data['weight']) + 6.25 * float(data['growth']) - 5 * float(data['age'])
     await message.answer(f"Рекомендуемая норма калорий:\n - для мужчин: {calories + 5}\n - для женщин: {calories -161}")
     await state.finish()
